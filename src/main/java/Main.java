@@ -18,11 +18,15 @@ public class Main {
 
       // Wait for connection from client.
       clientSocket = serverSocket.accept();
+      System.out.println("Conection accepted");
+      while (clientSocket.isConnected()) {
+        OutputStream outputStream = clientSocket.getOutputStream();
 
-      OutputStream outputStream = clientSocket.getOutputStream();
+        String output = "+PONG\r\n";
+        outputStream.write(output.getBytes());
+        System.out.println("Wrote PONG");
+      }
 
-      String output = "+PONG\r\n";
-      outputStream.write(output.getBytes());
 
     } catch (IOException e) {
       System.out.println("IOException: " + e.getMessage());
