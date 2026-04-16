@@ -21,13 +21,13 @@ public class Main {
       System.out.println("Conection accepted");
 
       InputStream input = clientSocket.getInputStream();
-      while (input.read() != -1) {
+      byte[] buffer = new byte[1024];
+      while (clientSocket.isConnected()) {
+        int readBytesCount = input.read(buffer);
         OutputStream outputStream = clientSocket.getOutputStream();
-        if (input.read() % 14 == 0) {
-          String output = "+PONG\r\n";
-          outputStream.write(output.getBytes());
-          System.out.println("Wrote PONG");
-        }
+        String output = "+PONG\r\n";
+        outputStream.write(output.getBytes());
+        System.out.println("Wrote PONG");
       }
 
 
