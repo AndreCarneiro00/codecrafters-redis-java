@@ -23,10 +23,11 @@ public class Main {
       InputStream input = clientSocket.getInputStream();
       while (input.read() != -1) {
         OutputStream outputStream = clientSocket.getOutputStream();
-
-        String output = "+PONG\r\n";
-        outputStream.write(output.getBytes());
-        System.out.println("Wrote PONG");
+        if (input.read() % 14 == 0) {
+          String output = "+PONG\r\n";
+          outputStream.write(output.getBytes());
+          System.out.println("Wrote PONG");
+        }
       }
 
 
