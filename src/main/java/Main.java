@@ -19,7 +19,9 @@ public class Main {
       // Wait for connection from client.
       clientSocket = serverSocket.accept();
       System.out.println("Conection accepted");
-      while (clientSocket.isConnected()) {
+
+      InputStream input = clientSocket.getInputStream();
+      while (input.read() != -1) {
         OutputStream outputStream = clientSocket.getOutputStream();
 
         String output = "+PONG\r\n";
