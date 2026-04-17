@@ -1,4 +1,4 @@
-package redisthread;
+package com.redisthread;
 
 import java.io.IOException;
 import java.net.Socket;
