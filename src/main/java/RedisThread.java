@@ -1,4 +1,3 @@
-
 import java.io.IOException;
 import java.net.Socket;
 import java.io.InputStream;
@@ -15,10 +14,10 @@ public class RedisThread implements Runnable {
     public void run() {
         try {
             InputStream input = clientSocket.getInputStream();
-            while (clientSocket.isConnected()) {
-                byte[] buffer = new byte[1024];
-                int readBytesCount = input.read(buffer);
-                String inputString = new String(buffer).trim();
+            int readBytesCount;
+            byte[] buffer = new byte[1024];
+            while ((readBytesCount = input.read(buffer)) != -1) {
+                String inputString = new String(buffer, 0, readBytesCount).trim();
                 System.out.printf("inputString is %s%n", inputString);
                 OutputStream outputStream = clientSocket.getOutputStream();
                 outputStream.write("+PONG\r\n".getBytes());
