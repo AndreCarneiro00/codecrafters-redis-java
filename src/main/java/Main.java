@@ -23,8 +23,6 @@ public class Main {
 
               thread.start();
             }
-
-
         } catch (IOException e) {
             System.out.println("IOException: " + e.getMessage());
         }
