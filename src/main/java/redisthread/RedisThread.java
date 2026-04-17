@@ -1,4 +1,4 @@
-package redisThread;
+package redisthread;
 
 import java.io.IOException;
 import java.net.Socket;
